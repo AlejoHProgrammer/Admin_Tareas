@@ -1,30 +1,8 @@
 <script>
-  /* function save_task(){
-  var formData;
-	formData = new FormData($('#fmr_task')[0]);
 
-    $.ajax({
-        type: "POST",
-        data: formData,
-        url: "send_task.php",
-        async: true,
-        cache: false,
-        contentType: false,
-        processData: false,
-
-        error: function(data){
-            alert("Hubo un problema save_task..." + data);
-           
-        },
-        success: function (data) {
-        $("#msg").html("Insertado! "+data);
-        show_tasks(); 
-    }
-  });
-
-} */
-
-  //Mostrar tabla de tareas por hacer
+ /*=============================================
+	Mostrar tabla de tareas para realizar
+	=============================================*/
 
   function show_tasks() {
 
@@ -46,7 +24,11 @@
 
   }
 
-  //Mostrar tabla tareas completadas
+   /*=============================================
+	Mostrar tabla tareas completadas
+	=============================================*/
+
+
 
   function show_task_complete() {
 
@@ -68,8 +50,10 @@
 
   }
 
-
-  // Actualizar y editar tarea 
+ /*=============================================
+	Modal Editar tarea 
+	=============================================*/
+  
 
   function update_task(id) {
     var formData;
@@ -93,9 +77,10 @@
     });
   }
 
-
-  //  Mostrar modal para crear y editar tareas
-
+/*=============================================
+	Mostrar modal para crear tareas
+	=============================================*/
+   
   function modal_task(id) {
     var formData;
     formData = new FormData($('#edit_task')[0]);
@@ -118,7 +103,7 @@
   }
 
   /*=============================================
-	Modal para agregar tareas
+	Modal para agregar notas
 	=============================================*/
 
   function modal_tnote(id) {
@@ -163,9 +148,11 @@
       }
     });
   }
-
+/*=============================================
+	Borrar notas
+	=============================================*/
   function delete_note(id) {
-    var opcion = confirm("¿Estas seguro que completastes esta tarea?");
+    var opcion = confirm("¿Estas seguro de borrar esta nota?");
 
     if (opcion == true) {
 
@@ -190,8 +177,10 @@
     }
   }
 
-
-  // Terminar tarea 
+/*=============================================
+	 Terminar tarea
+	=============================================*/
+   
 
   function complete_task(id) {
     var opcion = confirm("¿Estas seguro que completastes esta tarea?");
@@ -219,8 +208,10 @@
     }
   }
 
-
-  //Rehacer tarea
+/*=============================================
+	Volver a realizar la tarea
+	=============================================*/
+  
   function redo_task(id) {
     var opcion = confirm("¿Estas seguro de volver ha realizar esta tarea?");
 
@@ -247,6 +238,9 @@
     }
   }
 
+  /*=============================================
+	Mostrar tareas completas
+	=============================================*/
   function show_task_complete() {
     $.ajax({
       type: "POST",
@@ -266,7 +260,9 @@
   }
 
 
-  // Borrar tareas
+  /*=============================================
+	Borrar tareas
+	=============================================*/
 
   function delete_task(id) {
 
