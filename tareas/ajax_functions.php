@@ -117,15 +117,17 @@
     });
   }
 
-  /* Agregar notas modal */
+  /*=============================================
+	Modal para agregar tareas
+	=============================================*/
 
-  function modal_tnote() {
+  function modal_tnote(id) {
     var formData;
     formData = new FormData($('#text_note')[0]);
     $.ajax({
       type: "POST",
       data: formData,
-      url: "modal_note.php",
+      url: "modal_note.php?id=" + id,
       async: true,
       cache: false,
       contentType: false,
@@ -140,13 +142,13 @@
     });
   }
 
-  function agg_note() {
+  function agg_note(id) {
     var formData;
     formData = new FormData($('#text_note')[0]);
     $.ajax({
       type: "POST",
       data: formData,
-      url: "note_send.php",
+      url: "note_send.php?id="+id,
       async: true,
       cache: false,
       contentType: false,

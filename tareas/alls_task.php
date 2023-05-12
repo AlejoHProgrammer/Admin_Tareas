@@ -22,7 +22,7 @@
 
   <div class="row">
 
-    <div class="col-xl-6" id="div_card_tareas">
+    <div class="col-xl-6 py-2" id="div_card_tareas">
       <div class="card">
         <div class="card-header text-white bg-secondary py-1 h6">
           <i class="fas fa-list fa-lg"></i> Tareas <div class="float-right"><a href="#" data-toggle="tooltip" title="Minimizar!" id="toggle_agg_task"><i id="fa-window-minimize" class="fas fa-window-minimize fa-lg"></i></a></div>
@@ -95,14 +95,16 @@
       </div>
     </div>
 
-    <div class="col-xl-6" id="div_card_task">
+    <br><br>
+
+    <div class="col-xl-6 py-2" id="div_card_task">
       <div class="card">
         <div class="card-header text-white bg-secondary py-1 h6">
           <i class="fas fa-pen fa-lg"></i> Notas <div class="float-right"><a href="#" data-toggle="tooltip" title="Minimizar!" id="toggle_agg_note"><i id="fa-window-minimize" class="fas fa-window-minimize fa-lg"></i></a></div>
         </div>
         <div class="card-body" id="div_tablero_notes">
 
-          <button type="button" class="btn bg-success " data-toggle="modal" data-target="#myModal" onclick=modal_tnote()><i class="fas fa-plus"></i> Agregar nota</button>
+          <button type="button" class="btn bg-success " data-toggle="modal" data-target="#myModal" onclick=modal_tnote(0)><i class="fas fa-plus"></i> Agregar nota</button>
           <br><br>
 
           <?php
@@ -115,8 +117,20 @@
               <div class="col-md-4">
                 <form method="post" id="note_d">
                   <div class="card bg-warning">
-                    <input type="hidden" value="<?php echo $note_description["id_note"] ?>">
-                    <?php echo '<a id="delete_tag" href="#" onclick="delete_note(' . $note_description['id_note'] . ')"><i class="fa fa-trash"></i></a>' ?>
+                    <input type="hidden" value="<?php echo $note_description["id"] ?>">
+
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                        <?php echo '<a class="dropdown-item" id="" href="#myModal" data-toggle="modal" onclick="modal_tnote('.$note_description['id'] . ')"><i class="fa fa-pen"></i>Editar</a>' ?>
+
+                        <?php echo '<a class="dropdown-item" id="" href="#" onclick="delete_note(' . $note_description['id'] . ')"><i class="fa fa-trash"></i> Borrar</a>' ?>
+                      </div>
+                    </div>
+
+                    <!-- <?php /* echo '<a id="delete_tag" href="#" onclick="delete_note('.$note_description['id'].')"><i class="fa fa-trash"></i></a>' */ ?> -->
                     <div class="card-body text-center">
                       <p class="card-text"><?php echo $note_description["note"] ?></p>
                     </div>

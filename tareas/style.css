@@ -43,6 +43,13 @@ header {
 
 /* .---------------------Estilos task----------------------. */
 
+/* minimizar */
+#fa-window-minimize:hover {
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: #fff;
+}
+
 /*Iconos eliminar, editar,borrar*/
 #check_tag:hover {
   color: #00ff37;
@@ -115,8 +122,3 @@ header {
   color: #fff;
 }
 
-#fa-window-minimize:hover{
-  color: #ffffff;
-  font-weight: bold;
-/*   text-shadow: #fff;
- */}

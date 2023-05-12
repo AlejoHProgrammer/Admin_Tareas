@@ -4,7 +4,7 @@ $conn = conn();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "DELETE FROM `notes` WHERE id_note='$id'";
+    $sql = "DELETE FROM `notes` WHERE id='$id'";
 
     if (mysqli_query($conn, $sql)) {
         echo "";
