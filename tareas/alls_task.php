@@ -4,8 +4,8 @@
 <body>
 
   <?php
-  require_once "ajax_functions.php";
-  include_once "db.php";
+  /*   require_once "js_functions.php";
+ */ include_once "db.php";
   $conn = conn();
 
   /* $sql="SELECT * FROM task WHERE complete=0 ORDER BY prioridad DESC"; */
@@ -23,10 +23,11 @@
   <div class="row">
 
     <div class="col-xl-6 py-2" id="div_card_tareas">
-      <div class="card">
+      <div class="card" style="background-color:#ccc">
         <div class="card-header text-white bg-secondary py-1 h6">
-          <i class="fas fa-list fa-lg"></i> Tareas <div class="float-right"><a href="#" data-toggle="tooltip" title="Minimizar!" id="toggle_agg_task"><i id="fa-window-minimize" class="fas fa-window-minimize fa-lg"></i></a></div>
+          <i class="fas fa-list fa-lg"></i> Tareas <div class="float-right"><a href="#" id="toggle_agg_task"><i id="open_close_window1" class="fas fa-window-minimize fa-lg"></i></a></div>
         </div>
+
         <div class="card-body" id="div_tablero_tareas">
 
           <form id="edit_task">
@@ -43,7 +44,8 @@
                 <tr>
                   <th>TAREA</th>
                   <th>PRIORIDAD</th>
-                  <th>FECHA LIMITE</th>
+                  <th>INGRESO</th>
+                  <th>LIMITE</th>
                   <th>TERMINAR</th>
                   <th>EDITAR</th>
                   <!--               <th>BORRAR</th> -->
@@ -73,6 +75,8 @@
 
                     <td class="<?php echo $clase_prioridad; ?>"><?php echo $date['prioridad'] ?></td>
 
+                    <td><?php echo $date["registration_date"]; ?></td>
+
                     <td><?php echo $date['date_limit'] ?></td>
 
                     <td><?php echo '<a id="check_tag" href="#" onclick="complete_task(' . $date['id'] . ')"><i class="fa fa-check"></i></a>' ?></td>
@@ -98,9 +102,9 @@
     <br><br>
 
     <div class="col-xl-6 py-2" id="div_card_task">
-      <div class="card">
+      <div class="card" style="background-color:#ccc">
         <div class="card-header text-white bg-secondary py-1 h6">
-          <i class="fas fa-pen fa-lg"></i> Notas <div class="float-right"><a href="#" data-toggle="tooltip" title="Minimizar!" id="toggle_agg_note"><i id="fa-window-minimize" class="fas fa-window-minimize fa-lg"></i></a></div>
+          <i class="fas fa-pen fa-lg"></i> Notas <div class="float-right"><a href="#" data-toggle="tooltip" title="Minimizar!" id="toggle_agg_note"><i id="open_close_window2" class="fas fa-window-minimize fa-lg"></i></a></div>
         </div>
         <div class="card-body" id="div_tablero_notes">
 
@@ -116,7 +120,7 @@
             <?php foreach ($result as $note_description) { ?>
               <div class="col-md-4">
                 <form method="post" id="note_d">
-                  <div class="card bg-warning">
+                  <div class="card bg-info">
                     <input type="hidden" value="<?php echo $note_description["id"] ?>">
 
                     <div class="dropdown">
@@ -124,7 +128,7 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </button>
                       <div class="dropdown-menu">
-                        <?php echo '<a class="dropdown-item" id="" href="#myModal" data-toggle="modal" onclick="modal_tnote('.$note_description['id'] . ')"><i class="fa fa-pen"></i>Editar</a>' ?>
+                        <?php echo '<a class="dropdown-item" id="" href="#myModal" data-toggle="modal" onclick="modal_tnote(' . $note_description['id'] . ')"><i class="fa fa-pen"></i>Editar</a>' ?>
 
                         <?php echo '<a class="dropdown-item" id="" href="#" onclick="delete_note(' . $note_description['id'] . ')"><i class="fa fa-trash"></i> Borrar</a>' ?>
                       </div>
@@ -152,6 +156,7 @@
         });
       });
 
+
       $(document).ready(function() {
         $("#toggle_agg_note").click(function() {
           $("#div_tablero_notes").slideToggle();
@@ -166,8 +171,43 @@
           });
         });
       });
-    </script>
 
+      $(document).ready(function() {
+        $("#toggle_agg_task").on("click", function() {
+          var elemento = $("#open_close_window1");
+
+          if (elemento.hasClass("fas fa-window-minimize fa-lg")) {
+            elemento.removeClass("fas fa-window-minimize fa-lg").addClass("fas fa-window-maximize fa-lg");
+          } else {
+            elemento.removeClass("fas fa-window-maximize fa-lg").addClass("fas fa-window-minimize fa-lg");
+          }
+        });
+      });
+
+      $(document).ready(function() {
+        $("#toggle_agg_note").on("click", function() {
+          var elemento = $("#open_close_window2");
+
+          if (elemento.hasClass("fas fa-window-minimize fa-lg")) {
+            elemento.removeClass("fas fa-window-minimize fa-lg").addClass("fas fa-window-maximize fa-lg");
+          } else {
+            elemento.removeClass("fas fa-window-maximize fa-lg").addClass("fas fa-window-minimize fa-lg");
+          }
+        });
+      });
+
+      /* $(document).ready(function() {
+            $("#toggle_agg_task").on("click", function() {
+              //$("#window").text("Maximizar");
+              var elemento = $("#window");
+              if (elemento.text() === "Maximizar") {
+                elemento.text("Minimizar");
+              } else {
+                elemento.text("Maximizar");
+              }
+            });
+          }); */
+    </script>
 
 </body>
 
