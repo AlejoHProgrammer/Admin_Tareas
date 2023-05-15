@@ -38,61 +38,62 @@
 
             <input class="form-control bg-dark " style="color:#FFF" id="search_task" type="text" placeholder="Buscar..">
 
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
             <table id="task" class="table table-dark table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>TAREA</th>
-                  <th>PRIORIDAD</th>
-                  <th>INGRESO</th>
-                  <th>LIMITE</th>
-                  <th>TERMINAR</th>
-                  <th>EDITAR</th>
-                  <!--               <th>BORRAR</th> -->
-                </tr>
-              </thead>
-
-              <?php
-              foreach ($result as $date) {
-                $prioridad = $date['prioridad'];
-                $clase_prioridad = '';
-
-                if ($prioridad == 'Urgente') {
-                  $clase_prioridad = 'rojo';
-                } else if ($prioridad == 'Importante') {
-                  $clase_prioridad = 'verde';
-                } else if ($prioridad == 'Pendiente') {
-                  $clase_prioridad = 'azul';
-                } else {
-                  $clase_prioridad = 'blanco';
-                }
-              ?>
-
-                <tbody id="myTable">
+                <thead>
                   <tr>
-
-                    <td><?php echo $date['description'] ?></td>
-
-                    <td class="<?php echo $clase_prioridad; ?>"><?php echo $date['prioridad'] ?></td>
-
-                    <td><?php echo $date["registration_date"]; ?></td>
-
-                    <td><?php echo $date['date_limit'] ?></td>
-
-                    <td><?php echo '<a id="check_tag" href="#" onclick="complete_task(' . $date['id'] . ')"><i class="fa fa-check"></i></a>' ?></td>
-
-                    <td><?php echo '<a id="edit_tag" href="#myModal" data-toggle="modal" onclick="modal_task(' . $date['id'] . ')"><i class="fa fa-pen"></i></a>' ?></td>
-
-                    <!--  <td><?php /* echo '<a id="delete_tag" href="#" onclick="delete_task(' . $date['id'] . ')"><i class="fa fa-trash"></i></a>' */ ?></td> -->
-
+                    <th>TAREA</th>
+                    <th>PRIORIDAD</th>
+                    <th>INGRESO</th>
+                    <th>LIMITE</th>
+                    <th>TERMINAR</th>
+                    <th>EDITAR</th>
+                    <!--<th>BORRAR</th>-->
                   </tr>
-                </tbody>
+                </thead>
 
-              <?php
-              }
-              ?>
-            </table>
+                <?php
+                foreach ($result as $date) {
+                  $prioridad = $date['prioridad'];
+                  $clase_prioridad = '';
 
+                  if ($prioridad == 'Urgente') {
+                    $clase_prioridad = 'rojo';
+                  } else if ($prioridad == 'Importante') {
+                    $clase_prioridad = 'verde';
+                  } else if ($prioridad == 'Pendiente') {
+                    $clase_prioridad = 'azul';
+                  } else {
+                    $clase_prioridad = 'blanco';
+                  }
+                ?>
+
+                  <tbody id="myTable">
+                    <tr>
+
+                      <td><?php echo $date['description'] ?></td>
+
+                      <td class="<?php echo $clase_prioridad; ?>"><?php echo $date['prioridad'] ?></td>
+
+                      <td><?php echo $date["registration_date"]; ?></td>
+
+                      <td><?php echo $date['date_limit'] ?></td>
+
+                      <td><?php echo '<a id="check_tag" href="#" onclick="complete_task(' . $date['id'] . ')"><i class="fa fa-check"></i></a>' ?></td>
+
+                      <td><?php echo '<a id="edit_tag" href="#myModal" data-toggle="modal" onclick="modal_task(' . $date['id'] . ')"><i class="fa fa-pen"></i></a>' ?></td>
+
+                      <!--  <td><?php /* echo '<a id="delete_tag" href="#" onclick="delete_task(' . $date['id'] . ')"><i class="fa fa-trash"></i></a>' */ ?></td> -->
+
+                    </tr>
+                  </tbody>
+
+                <?php
+                }
+                ?>
+              </table>
+            </div>
           </form>
 
         </div>
@@ -104,7 +105,7 @@
     <div class="col-xl-6 py-2" id="div_card_task">
       <div class="card" style="background-color:#ccc">
         <div class="card-header text-white bg-secondary py-1 h6">
-          <i class="fas fa-pen fa-lg"></i> Notas <div class="float-right"><a href="#" data-toggle="tooltip" title="Minimizar!" id="toggle_agg_note"><i id="open_close_window2" class="fas fa-window-minimize fa-lg"></i></a></div>
+          <i class="fas fa-pen fa-lg"></i> Notas <div class="float-right"><a href="#" data-toggle="tooltip" id="toggle_agg_note"><i id="open_close_window2" class="fas fa-window-minimize fa-lg"></i></a></div>
         </div>
         <div class="card-body" id="div_tablero_notes">
 
@@ -116,9 +117,11 @@
           $result = mysqli_query($conn, $sql) or trigger_error("ERROR:", mysqli_error($conn));
           ?>
 
-          <div class="row">
+          <div id="div_notas" class="row">
             <?php foreach ($result as $note_description) { ?>
+
               <div class="col-md-4">
+
                 <form method="post" id="note_d">
                   <div class="card bg-info">
                     <input type="hidden" value="<?php echo $note_description["id"] ?>">

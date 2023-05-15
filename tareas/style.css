@@ -44,7 +44,7 @@ header {
 /* .---------------------Estilos task----------------------. */
 
 /* minimizar */
-#fa-window-minimize:hover {
+.float-right a:hover {
   color: #ffffff;
   font-weight: bold;
   text-shadow: #fff;
@@ -81,10 +81,10 @@ header {
 }
 
 /* Tabla*/
-#task,
-#title_task_complete {
+#task, #title_task_complete {
   text-align: center;
 }
+
 
 /* Boton todas tareas completadas*/
 
@@ -117,8 +117,24 @@ header {
   font-weight: bold;
 }
 
-/* Filtro tareas */
+/* Filtro tareas y scroll */
 #search_task {
   color: #fff;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 500px;
+  overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+} 
+
+#div_notas{
+  position: relative;
+  overflow:auto;
+  height: 525px;
 }
 
