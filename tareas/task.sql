@@ -28,19 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `notes` (
-  `id_note` int(11) NOT NULL,
-  `note` varchar(1000) NOT NULL
+  `id` int(11) NOT NULL,
+  `note` varchar(1000) NOT NULL,
+  `note_registration` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `notes`
 --
 
-INSERT INTO `notes` (`id_note`, `note`) VALUES
-(1, 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae aut saepe quisquam aliquam quo aliquid illo similique, distinctio omnis nostrum nobis id eius. Neque, omnis numquam a aliquid repellendus ipsam.\r\n'),
-(17, ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae aut saepe quisquam aliquam quo aliquid illo similique, distinctio omnis nostrum nobis id eius. Neque, omnis numquam a aliquid repellendus ipsam.\r\n'),
-(18, ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae aut saepe quisquam aliquam quo aliquid illo similique, distinctio omnis nostrum nobis id eius. Neque, omnis numquam a aliquid repellendus ipsam.\r\n'),
-(19, ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae aut saepe quisquam aliquam quo aliquid illo similique, distinctio omnis nostrum nobis id eius. Neque, omnis numquam a aliquid repellendus ipsam.\r\n');
+INSERT INTO `notes` (`id`, `note`, `note_registration`) VALUES
+(1, 'nota1', '2023-05-15'),
+(2, 'nota2', '2023-05-15');
 
 -- --------------------------------------------------------
 
