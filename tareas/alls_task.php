@@ -3,8 +3,9 @@
 
 <body>
 
+
   <?php
-   include_once "db.php";
+  include_once "db.php";
   $conn = conn();
 
   /* $sql="SELECT * FROM task WHERE complete=0 ORDER BY prioridad DESC"; */
@@ -77,16 +78,17 @@
 
                       <td><?php echo $date["registration_date"]; ?></td>
 
-                      <td><?php $fecha1 = new DateTime($date["date_limit"]);
+                      <td><?php
+                          $fecha1 = new DateTime($date["date_limit"]);
                           $fecha2 = new DateTime(date('Y-m-d'));
 
-                          $intervalo = $fecha1->diff($fecha2);
-
-                          $diasRestantes = $intervalo->days;
+                          $res_dias = date_diff($fecha1,$fecha2);;
+                          // diff es como la diferencia que hay entre fechas como si fuera una resta 
+                          $diasRestantes = $res_dias->days;
 
                           echo $diasRestantes <= 5 ? "<span style='color: #ff0000;font-weight: bold '>" . $diasRestantes . " dias para caducar tarea.</span>" : "Resta " . $diasRestantes . " días.";
 
-                          /*echo "Resta " . $diasRestantes . " días.";*/?></td>
+                          /*echo "Resta " . $diasRestantes . " días.";*/ ?></td>
 
                       <td><?php echo $date['date_limit'] ?></td>
 
@@ -161,68 +163,88 @@
           </div>
         </div>
       </div>
-
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function() {
-        $("#toggle_agg_task").click(function() {
-          $("#div_tablero_tareas").slideToggle();
+  <div class="row">
+
+    <div class="col-xl-12 py-2" id="div_card_tareas">
+
+      <div class="card" style="background-color:#ccc">
+
+        <div class="card-header text-white bg-secondary py-1 h6">
+        <i class="fas fa-user-clock"></i> REGISTRO DE REALIZACION DE TAREAS POR DIA<div class="float-right"></div>
+        </div>
+
+        <div class="card-body" id="div_tablero_tareas">
+          <?php
+          include "ctrl_task.php";
+          ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    $(document).ready(function() {
+      $("#toggle_agg_task").click(function() {
+        $("#div_tablero_tareas").slideToggle();
+      });
+    });
+
+
+    $(document).ready(function() {
+      $("#toggle_agg_note").click(function() {
+        $("#div_tablero_notes").slideToggle();
+      });
+    });
+
+    $(document).ready(function() {
+      $("#search_task").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
+    });
 
+    $(document).ready(function() {
+      $("#toggle_agg_task").on("click", function() {
+        var elemento = $("#open_close_window1");
 
-      $(document).ready(function() {
-        $("#toggle_agg_note").click(function() {
-          $("#div_tablero_notes").slideToggle();
-        });
+        if (elemento.hasClass("fas fa-window-minimize fa-lg")) {
+          elemento.removeClass("fas fa-window-minimize fa-lg").addClass("fas fa-window-maximize fa-lg");
+        } else {
+          elemento.removeClass("fas fa-window-maximize fa-lg").addClass("fas fa-window-minimize fa-lg");
+        }
       });
+    });
 
-      $(document).ready(function() {
-        $("#search_task").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          $("#myTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    $(document).ready(function() {
+      $("#toggle_agg_note").on("click", function() {
+        var elemento = $("#open_close_window2");
+
+        if (elemento.hasClass("fas fa-window-minimize fa-lg")) {
+          elemento.removeClass("fas fa-window-minimize fa-lg").addClass("fas fa-window-maximize fa-lg");
+        } else {
+          elemento.removeClass("fas fa-window-maximize fa-lg").addClass("fas fa-window-minimize fa-lg");
+        }
+      });
+    });
+
+    /* $(document).ready(function() {
+          $("#toggle_agg_task").on("click", function() {
+            //$("#window").text("Maximizar");
+            var elemento = $("#window");
+            if (elemento.text() === "Maximizar") {
+              elemento.text("Minimizar");
+            } else {
+              elemento.text("Maximizar");
+            }
           });
-        });
-      });
-
-      $(document).ready(function() {
-        $("#toggle_agg_task").on("click", function() {
-          var elemento = $("#open_close_window1");
-
-          if (elemento.hasClass("fas fa-window-minimize fa-lg")) {
-            elemento.removeClass("fas fa-window-minimize fa-lg").addClass("fas fa-window-maximize fa-lg");
-          } else {
-            elemento.removeClass("fas fa-window-maximize fa-lg").addClass("fas fa-window-minimize fa-lg");
-          }
-        });
-      });
-
-      $(document).ready(function() {
-        $("#toggle_agg_note").on("click", function() {
-          var elemento = $("#open_close_window2");
-
-          if (elemento.hasClass("fas fa-window-minimize fa-lg")) {
-            elemento.removeClass("fas fa-window-minimize fa-lg").addClass("fas fa-window-maximize fa-lg");
-          } else {
-            elemento.removeClass("fas fa-window-maximize fa-lg").addClass("fas fa-window-minimize fa-lg");
-          }
-        });
-      });
-
-      /* $(document).ready(function() {
-            $("#toggle_agg_task").on("click", function() {
-              //$("#window").text("Maximizar");
-              var elemento = $("#window");
-              if (elemento.text() === "Maximizar") {
-                elemento.text("Minimizar");
-              } else {
-                elemento.text("Maximizar");
-              }
-            });
-          }); */
-    </script>
+        }); */
+  </script>
 
 </body>
 

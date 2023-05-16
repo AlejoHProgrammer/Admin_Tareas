@@ -303,4 +303,25 @@
   /* document.getElementById("bt_modal_edit").addEventListener("click", ()=>{
       alert("Haz llenado todo");
   }); */
+
+  function ctrl_tasks() {
+
+$.ajax({
+  type: "POST",
+  url: "ctrl_task.php?",
+  async: true,
+  cache: false,
+  contentType: false,
+  processData: false,
+
+  error: function(data) {
+    alert("Hubo un problema show_task..." + data);
+  },
+  success: function(data) {
+    $("#all_date").html(data);
+  }
+});
+
+}
+
 </script>
