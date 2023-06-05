@@ -3,6 +3,25 @@
 
 <body>
 
+<div class="row">
+
+    <div class="col-xl-12 py-2" id="">
+
+      <div class="card" style="background-color:#ccc">
+
+        <div class="card-header text-white bg-secondary py-1 h6">
+        <i class="fas fa-cubes fa-lg"></i> OBJETOS<div class="float-right"></div>
+        </div>
+
+        <div class="card-body" id="">
+          <?php
+          include "practice.php";
+          ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <?php
   include_once "db.php";
@@ -45,7 +64,7 @@
                     <th>TAREA</th>
                     <th>PRIORIDAD</th>
                     <th>INGRESO</th>
-                    <th>FALTAN</th>
+                    <!-- <th>FALTAN</th> --> 
                     <th>LIMITE</th>
                     <th>TERMINAR</th>
                     <th>EDITAR</th>
@@ -68,33 +87,48 @@
                     $clase_prioridad = 'blanco';
                   }
                 ?>
-
                   <tbody id="myTable">
                     <tr>
 
-                      <td><?php echo $date['description'] ?></td>
+                      <td><input type="hidden" value="<?php echo $date['id']; ?>"><?php echo $date['description']; ?></td>
 
                       <td class="<?php echo $clase_prioridad; ?>"><?php echo $date['prioridad'] ?></td>
 
                       <td><?php echo $date["registration_date"]; ?></td>
 
-                      <td><?php
-                          $fecha1 = new DateTime($date["date_limit"]);
-                          $fecha2 = new DateTime(date('Y-m-d'));
+                       <!-- <td><?php
+                           /* $fecha1 = date_create(date('Y-m-d')); //fecha actual
+                          $fecha2 = date_create($date["date_limit"]); // fecha finalizacion
 
-                          $res_dias = date_diff($fecha1,$fecha2);;
                           // diff es como la diferencia que hay entre fechas como si fuera una resta 
+                          $res_dias = $fecha1->diff($fecha2);
+
                           $diasRestantes = $res_dias->days;
+                          //$diasRestantes = $res_dias->format("%R%a days ");
+                          echo $res_dias->format("%R%a days ");
 
-                          echo $diasRestantes <= 5 ? "<span style='color: #ff0000;font-weight: bold '>" . $diasRestantes . " dias para caducar tarea.</span>" : "Resta " . $diasRestantes . " días.";
 
-                          /*echo "Resta " . $diasRestantes . " días.";*/ ?></td>
+                          if ($diasRestantes <= 5) {
+
+                            if ($diasRestantes < 0) {
+                              echo '<span style="color: #ff0000;font-weight: bold">Ya caducó la tarea.</span>';
+                            } elseif ($diasRestantes == 0) {
+                              echo '<span style="color: #ff0000;font-weight: bold">Hoy caduca la tarea.</span>';
+                            } else {
+                              echo '<span style="color: #ff0000;font-weight: bold">' . $diasRestantes . ' días para caducar tarea.</span>';
+                            }
+                          } else {
+                            echo "Faltan " . $diasRestantes . " días.";
+                          }
+ */
+                          /*echo $diasRestantes <= 5 ? "<span style='color: #ff0000;font-weight: bold '>" . $diasRestantes . " dias para caducar tarea.</span>" : "Faltan  " . $diasRestantes . " días.";
+                          */ ?></td> --> 
 
                       <td><?php echo $date['date_limit'] ?></td>
 
                       <td><?php echo '<a id="check_tag" href="#" onclick="complete_task(' . $date['id'] . ')"><i class="fa fa-check"></i></a>' ?></td>
 
-                      <td><?php echo '<a id="edit_tag" href="#myModal" data-toggle="modal" onclick="modal_task(' . $date['id'] . ')"><i class="fa fa-pen"></i></a>' ?></td>
+                      <td><?php echo '<a id="edit_tag" href="#myModal" data-toggle="modal" onclick="modal_task(' . $date['id'] . ')"><i class="fa fa-pen"></i></a>'  ?></td>
 
                       <!--  <td><?php /* echo '<a id="delete_tag" href="#" onclick="delete_task(' . $date['id'] . ')"><i class="fa fa-trash"></i></a>' */ ?></td> -->
 
@@ -125,6 +159,9 @@
           <br><br>
 
           <?php
+          include_once "db.php";
+          $conn = conn();
+
           $sql = "SELECT * FROM notes";
           $result = mysqli_query($conn, $sql) or trigger_error("ERROR:", mysqli_error($conn));
           ?>
@@ -173,7 +210,7 @@
       <div class="card" style="background-color:#ccc">
 
         <div class="card-header text-white bg-secondary py-1 h6">
-        <i class="fas fa-user-clock"></i> REGISTRO DE REALIZACION DE TAREAS POR DIA<div class="float-right"></div>
+        <i class="fas fa-tasks"></i></i> REGISTRO DE REALIZACION DE TAREAS POR DIA<div class="float-right"></div>
         </div>
 
         <div class="card-body" id="div_tablero_tareas">

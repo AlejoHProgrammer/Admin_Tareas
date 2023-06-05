@@ -40,7 +40,7 @@
                 <div class="col">
                     <label id="descrip_task" for="task">Descripción de la tarea <i class="fa fa-pen"></i></label>
 
-                    <textarea type="text" class="form-control" name="description" id="description"><?php echo $dato['description'] ?></textarea>
+                    <textarea type="text" class="form-control" cols="30" rows="5" name="description" id="description"><?php echo $dato['description'] ?></textarea>
                 </div>
             </div>
             <br>

@@ -33,7 +33,6 @@ $result = mysqli_query($conn, $sql) or trigger_error("ERROR:", mysqli_error($con
                     if (isset($group_tasks[$fecha])) {
                         $group_tasks[$fecha][] = $description;
                     } else {
-                        // Si la fecha no está en el array, crea un nuevo grupo con la descripción de la tarea
                         $group_tasks[$fecha] = array($description);
                     }
                 }
