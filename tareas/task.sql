@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2023 a las 22:41:47
+-- Tiempo de generación: 05-06-2023 a las 22:54:28
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -38,7 +38,7 @@ CREATE TABLE `notes` (
 --
 
 INSERT INTO `notes` (`id`, `note`, `note_registration`) VALUES
-(2, 'Se modifico codigo para la tabla de arriba OPP (tabla ya foreach)', '2023-06-05');
+(2, 'Se modifico código para la tabla de arriba OPP (TABLA CON FOREACH).', '2023-06-05');
 
 -- --------------------------------------------------------
 
@@ -89,9 +89,7 @@ INSERT INTO `task` (`id`, `description`, `prioridad`, `date_limit`, `complete`, 
 (5, 'Realizar tarea 5', '3', '2023-10-10', 0, '2023-04-28', '0000-00-00'),
 (6, 'Realizar tarea 6', '2', '2021-12-26', 0, '2023-04-28', '2023-05-11'),
 (7, 'Realizar tarea 7', '1', '2022-05-10', 0, '2023-04-28', '2023-05-11'),
-(8, 'Realizar tarea 8', '0', '2023-05-06', 0, '2023-04-28', '2023-05-11'),
-(0, ' Realizar tarea 9', '3', '2023-06-03', 1, '2023-05-29', '2023-05-29'),
-(0, ' Tarea 10', '2', '2023-06-23', 0, '2023-06-05', '0000-00-00');
+(8, 'Realizar tarea 8', '0', '2023-05-06', 0, '2023-04-28', '2023-05-11');
 
 --
 -- Índices para tablas volcadas
@@ -104,6 +102,12 @@ ALTER TABLE `notes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `task`
+--
+ALTER TABLE `task`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -111,7 +115,13 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT de la tabla `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
+-- AUTO_INCREMENT de la tabla `task`
+--
+ALTER TABLE `task`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
