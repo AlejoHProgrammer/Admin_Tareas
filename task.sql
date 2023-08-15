@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2023 a las 18:28:58
+-- Tiempo de generación: 15-08-2023 a las 17:26:13
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -37,8 +37,10 @@ CREATE TABLE `notes` (
 --
 
 INSERT INTO `notes` (`id`, `note`, `note_registration`) VALUES
-(1, 'nota1', '2023-05-15'),
-(2, 'nota2', '2023-05-15');
+(1, 'nota1.1', '2023-05-15'),
+(2, 'nota2.0.1', '2023-05-15'),
+(3, 'gojo\r\n', '2023-08-15'),
+(4, 'GOJO', '2023-08-15');
 
 -- --------------------------------------------------------
 
@@ -219,8 +221,34 @@ INSERT INTO `task` (`id`, `description`, `prioridad`, `date_limit`, `complete`, 
 (137, 'Analizar tendencias de la industria', '2', '2024-04-11', 0, '2023-12-20', '0000-00-00'),
 (138, 'Investigar nuevas oportunidades de negocio', '3', '2024-04-13', 0, '2023-12-21', '0000-00-00'),
 (139, 'Preparar presentación ejecutiva', '1', '2024-04-15', 0, '2023-12-22', '0000-00-00'),
-(140, 'Desarrollar estrategia de redes sociales', '2', '2024-04-17', 0, '2023-12-23', '0000-00-00');
+(140, 'Desarrollar estrategia de redes sociales', '2', '2024-04-17', 0, '2023-12-23', '0000-00-00'),
+(141, ' gojo', '3', '2023-08-16', 0, '2023-08-15', '0000-00-00'),
+(142, ' Server-Side 2.0', '2', '2023-08-15', 0, '2023-08-15', '0000-00-00');
 
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `priority`
+--
+ALTER TABLE `priority`
+  ADD PRIMARY KEY (`id_prioridad`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `task`
+--
+ALTER TABLE `task`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
